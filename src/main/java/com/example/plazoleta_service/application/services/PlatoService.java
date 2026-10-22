@@ -31,7 +31,7 @@ public class PlatoService implements PlatoUseCase {
             throw new DomainException("No eres el propietario de este restaurante.");
         }
 
-        plato.setActivo(true); // HU-03 Criterio 4: Por defecto activo en true
+        plato.setActivo(true);
         platoRepositoryPort.guardar(plato);
     }
 

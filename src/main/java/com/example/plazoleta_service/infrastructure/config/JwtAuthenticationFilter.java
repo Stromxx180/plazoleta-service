@@ -1,4 +1,4 @@
-package com.example.plazoleta_service.infraestructure.config;
+package com.example.plazoleta_service.infrastructure.config;
 
 import com.example.plazoleta_service.infrastructure.adapters.output.JwtTokenValidatorAdapter;
 import io.jsonwebtoken.Claims;
@@ -36,10 +36,12 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 Claims claims = jwtValidator.extraerClaims(token);
                 String correo = claims.getSubject();
                 String rol = claims.get("rol", String.class);
+                Long idUsuario = claims.get("idUsuario", Long.class);
 
                 UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(
                         correo, null, Collections.singletonList(new SimpleGrantedAuthority(rol))
                 );
+                auth.setDetails(idUsuario); // Guardamos el ID real del usuario autenticado
                 SecurityContextHolder.getContext().setAuthentication(auth);
             }
         }

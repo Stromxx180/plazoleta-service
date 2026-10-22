@@ -10,7 +10,7 @@ import java.util.List;
 public class RestauranteService implements RestauranteUseCase {
 
     private static final String REGEX_NUMERICO = "^\\d+$";
-    private static final String REGEX_TELEFONO = "^\\+?\\d{1,12}$";
+    private static final String REGEX_TELEFONO = "^\\+?\\d{1,13}$";
     private static final String REGEX_SOLO_NUMEROS = "^\\d+$";
 
     private final RestauranteRepositoryPort restauranteRepositoryPort;
@@ -28,7 +28,7 @@ public class RestauranteService implements RestauranteUseCase {
             throw new DomainException("El NIT debe ser únicamente numérico.");
         }
         if (r.getTelefono() == null || r.getTelefono().length() > 13 || !r.getTelefono().matches(REGEX_TELEFONO)) {
-            throw new DomainException("El teléfono debe tener máximo 13 caracteres y solo números (con '+' opcional).");
+            throw new DomainException("El teléfono debe tener máximo 13 caracteres y solo números.");
         }
         if (r.getIdPropietario() == null) {
             throw new DomainException("El ID del propietario es obligatorio.");

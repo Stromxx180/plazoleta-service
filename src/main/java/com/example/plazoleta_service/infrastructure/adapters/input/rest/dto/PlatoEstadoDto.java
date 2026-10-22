@@ -5,6 +5,6 @@ import lombok.Data;
 
 @Data
 public class PlatoEstadoDto {
-    @NotNull(message = "El estado activo es obligatorio")
+    @NotNull
     private Boolean activo;
 }

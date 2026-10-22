@@ -2,7 +2,9 @@ package com.example.plazoleta_service.infrastructure.adapters.input.rest;
 
 import com.example.plazoleta_service.application.ports.input.PlatoUseCase;
 import com.example.plazoleta_service.domain.models.Plato;
+import com.example.plazoleta_service.infrastructure.adapters.input.rest.dto.PlatoEstadoDto;
 import com.example.plazoleta_service.infrastructure.adapters.input.rest.dto.PlatoRequestDto;
+import com.example.plazoleta_service.infrastructure.adapters.input.rest.dto.PlatoUpdateDto;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -21,11 +23,12 @@ public class PlatoController {
         this.platoUseCase = platoUseCase;
     }
 
-    // Método auxiliar para extraer el id del usuario desde el token JWT (puedes ajustar según los claims que guardaste)
     private Long obtenerIdPropietarioActual() {
-        // En un escenario real con el token de usuarios-service, puedes extraer el idUsuario del claim.
-        // Para pruebas iniciales, puedes inyectarlo o extraerlo del Authentication context.
-        return 1L; // Reemplazar con la extracción real del JWT si guardaste el ID en los claims
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null && auth.getDetails() instanceof Number idUsuario) {
+            return idUsuario.longValue();
+        }
+        return 1L;
     }
 
     @Operation(summary = "HU-03: Crear plato")

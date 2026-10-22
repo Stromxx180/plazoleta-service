@@ -7,10 +7,9 @@ import lombok.Data;
 
 @Data
 public class PlatoUpdateDto {
-    @NotNull(message = "El precio es obligatorio")
-    @Positive(message = "El precio debe ser mayor a 0")
+    @NotNull @Positive
     private Integer precio;
 
-    @NotBlank(message = "La descripción es obligatoria")
+    @NotBlank
     private String descripcion;
 }

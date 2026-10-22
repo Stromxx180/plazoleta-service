@@ -1,4 +1,4 @@
-package com.example.plazoleta_service.infrastructure.output.persistence;
+package com.example.plazoleta_service.infrastructure.adapters.output.persistence;
 
 import com.example.plazoleta_service.application.ports.output.RestauranteRepositoryPort;
 import com.example.plazoleta_service.domain.models.Restaurante;
